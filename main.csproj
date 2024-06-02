@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp7.0</TargetFramework>
-    <StartupObject>Lyrics</StartupObject>
+    <StartupObject>InchesToCentimeters</StartupObject>
   </PropertyGroup>
 
 </Project>

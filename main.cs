@@ -1,33 +1,64 @@
 using System;
 
-class Lyrics
+class InchesToCentimeters
 {
-    public static void Main()
+    // Named constant for the number of centimeters in an inch
+    const double CentimetersPerInch = 2.54;
+
+    static void Main(string[] args)
     {
-      //Unit Test #1
-      Console.WriteLine("Unit Test #1");
-      DisplaySongLyrics("Oh, well imagine", "As I'm pacing the pews in a church corridor", "And I can't help but to hear", "No, I can't help but to hear an exchanging of words...");
-
-      //Unit Test #2
-      Console.WriteLine("Unit Test #2");
-      DisplaySongLyrics("Oh-oh-oh-oh-oh", "oh-oh-oh-oh", "oh-oh-oh", "Caught in a bad romance...");
-
-      //Unit Test #3
-      Console.WriteLine("Unit Test #3");
-      DisplaySongLyrics("Coming out of my cage", "And I've been doing just fine", "Gotta gotta be down", "Because I want it all");
-
-      //Unit Test #4
-      Console.WriteLine("Unit Test #4");
-      DisplaySongLyrics("Now, this is a story all about how", "My life got flipped-turned upside down", "And I'd like to take a minute", "Just sit right there", "I'll tell you how I became the prince of a town called Bel-Air");
-
+        // Execute all unit tests
+        UnitTest1();
+        UnitTest2();
+        UnitTest3();
+        UnitTest4();
     }
 
-    
-    static void DisplaySongLyrics(params string [] lyrics)
+    // Unit Test #1
+    static void UnitTest1()
     {
-        foreach (var line in lyrics)
-        {
-            Console.WriteLine(line);
-        }
+        double inches = 5;
+        double expectedCentimeters = 12.7;
+        double actualCentimeters = inches * CentimetersPerInch;
+        Console.WriteLine("Unit Test #1");
+        Console.WriteLine($"Required Inputs:  {inches} inches");
+        Console.WriteLine($"Expected Outcome: {expectedCentimeters} centimeters");
+        Console.WriteLine();
+    }
+
+    // Unit Test #2
+    static void UnitTest2()
+    {
+        double inches = 50;
+        double expectedCentimeters = 127;
+        double actualCentimeters = inches * CentimetersPerInch;
+        Console.WriteLine("Unit Test #2");
+        Console.WriteLine($"Required Inputs:  {inches} inches");
+        Console.WriteLine($"Expected Outcome: {expectedCentimeters} centimeters");
+        Console.WriteLine();
+    }
+
+    // Unit Test #3
+    static void UnitTest3()
+    {
+        double inches = -15;
+        double expectedCentimeters = -38.1;
+        double actualCentimeters = inches * CentimetersPerInch;
+        Console.WriteLine("Unit Test #3");
+        Console.WriteLine($"Required Inputs:  {inches} inches");
+        Console.WriteLine($"Expected Outcome: {expectedCentimeters} centimeters");
+        Console.WriteLine();
+    }
+
+    // Unit Test #4
+    static void UnitTest4()
+    {
+        double inches = 15994;
+        double expectedCentimeters = 40624.76;
+        double actualCentimeters = inches * CentimetersPerInch / 100.0; // Convert inches to meters
+        Console.WriteLine("Unit Test #4");
+        Console.WriteLine($"Required Inputs:  {inches} inches");
+        Console.WriteLine($"Expected Outcome: {expectedCentimeters} centimeters");
+        Console.WriteLine();
     }
 }
