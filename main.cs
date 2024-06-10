@@ -1,35 +1,45 @@
 using System;
 
-class MoveEstimator
+public class Twitter
 {
-    static void Main(string[] args)
+    public string PostMessage(string message)
     {
-        // Execute all unit tests
-        UnitTest(1, 10, 600, 2900.00);
-        UnitTest(2, 6.77, 15, 1245.50);
-        UnitTest(3, 56.25, 325, 9287.50);
-        UnitTest(4, 103, 3000, 21650.00);
+        if (message.Length <= 140)
+        {
+            return "Posted";
+        }
+        else
+        {
+            return "Rejected";
+        }
     }
+}
 
-    static void UnitTest(int testNumber, double hours, double miles, double expectedOutcome)
+// Unit Tests
+public class TwitterTests
+{
+    public static void Main(string[] args)
     {
-        double totalFee = CalculateMovingFee(hours, miles);
+        Twitter twitter = new Twitter();
 
-        Console.WriteLine($"Unit Test #{testNumber}");
-        Console.WriteLine($"Required Inputs:");
-        Console.WriteLine($"{hours} hours");
-        Console.WriteLine($"{miles} miles");
-        Console.WriteLine($"Expected Outcome: ${expectedOutcome:F2}");
-        Console.WriteLine();
-    }
+        // Unit Test #1
+        string message1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+        string result1 = twitter.PostMessage(message1);
+        Console.WriteLine($"Test 1:\nRequired Inputs: {message1}\nExpected Outcome: {result1}\n");
 
-    static double CalculateMovingFee(double hours, double miles)
-    {
-        const double baseRate = 200;
-        const double hourlyRate = 150;
-        const double perMileRate = 2;
+        // Unit Test #2
+        string message2 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper  risus in hendrerit. Viverra mauris in aliquam sem. Arcu felis bibendum ut tristique et egestas quis. Pretium fusce id velit ut tortor pretium viverra suspendisse. Arcu cursus vitae congue mauris rhoncus aenean vel elit. In nisl nisi scelerisque eu ultrices. Mattis enim ut tellus elementum sagittis vitae et leo duis. In massa tempor nec feugiat. Feugiat nibh sed pulvinar proin. Elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at. Scelerisque eu ultrices vitae auctor eu augue ut. Ac turpis egestas integer eget aliquet nibh praesent tristique. Viverra suspendisse potenti nullam ac tortor. Tortor id aliquet lectus proin. Dictum non consectetur a erat nam at lectus urna duis. Dui vivamus arcu felis bibendum ut tristique et egestas.";
+        string result2 = twitter.PostMessage(message2);
+        Console.WriteLine($"Test 2:\nRequired Inputs: {message2}\nExpected Outcome: {result2}\n");
 
-        double totalFee = baseRate + (hourlyRate * hours) + (perMileRate * miles);
-        return totalFee;
+        // Unit Test #3
+        string message3 = "Massa vitae tortor condimentum lacinia quis vel eros donec ac.";
+        string result3 = twitter.PostMessage(message3);
+        Console.WriteLine($"Test 3:\nRequired Inputs: {message3}\nExpected Outcome: {result3}\n");
+
+        // Unit Test #4
+        string message4 = "Platea dictumst quisque sagittis purus sit amet volutpat consequat mauris.";
+        string result4 = twitter.PostMessage(message4);
+        Console.WriteLine($"Test 4:\nRequired Inputs: {message4}\nExpected Outcome: {result4}\n");
     }
 }
