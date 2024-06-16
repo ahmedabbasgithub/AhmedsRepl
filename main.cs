@@ -1,67 +1,52 @@
 using System;
 
-class Hurricane
+class Perfect
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        RunUnitTest(1, 152);
-        RunUnitTest(2, 97.913);
-        RunUnitTest(3, 70.55);
-        RunUnitTest(4, 175.99);
+        RunUnitTests();
     }
 
-    static void RunUnitTest(int testNumber, double windSpeed)
+    // Method to run unit tests
+    static void RunUnitTests()
     {
-        string category = GetHurricaneCategory(windSpeed);
+        Console.WriteLine("Unit Test #1");
+        CheckPerfectNumber(496, "Perfect Number");
 
-        Console.WriteLine($"Unit Test #{testNumber}");
-        Console.WriteLine($"Required Inputs:  {windSpeed} mph");
-        Console.WriteLine("Expected Outcome: " + GetExpectedOutcome(testNumber));
+        Console.WriteLine("\nUnit Test #2");
+        CheckPerfectNumber(68, "Not A Perfect Number");
+
+        Console.WriteLine("\nUnit Test #3");
+        CheckPerfectNumber(5112, "Not A Perfect Number");
+
+        Console.WriteLine("\nUnit Test #4");
+        CheckPerfectNumber(8128, "Perfect Number");
+    }
+
+    // Method to check and print the outcome of a unit test
+    static void CheckPerfectNumber(int number, string expectedOutcome)
+    {
+        string outcome = IsPerfectNumber(number) ? "Perfect Number" : "Not A Perfect Number";
+        Console.WriteLine($"Required Inputs:  {number}");
+        Console.WriteLine($"Expected Outcome: {expectedOutcome}");
         Console.WriteLine();
     }
 
-    static string GetExpectedOutcome(int testNumber)
+    // Method to check if a number is perfect
+    static bool IsPerfectNumber(int number)
     {
-        switch (testNumber)
-        {
-            case 1:
-                return "Category Four Hurricane";
-            case 2:
-                return "Category Two Hurricane";
-            case 3:
-                return "Not a Hurricane";
-            case 4:
-                return "Category Five Hurricane";
-            default:
-                return "Unknown";
-        }
-    }
+        int sum = 0;
 
-    static string GetHurricaneCategory(double windSpeed)
-    {
-        if (windSpeed >= 157)
+        // Find all divisors of number (excluding itself) and calculate their sum
+        for (int divisor = 1; divisor <= number / 2; divisor++)
         {
-            return "Category Five Hurricane";
+            if (number % divisor == 0)
+            {
+                sum += divisor;
+            }
         }
-        else if (windSpeed >= 130)
-        {
-            return "Category Four Hurricane";
-        }
-        else if (windSpeed >= 111)
-        {
-            return "Category Three Hurricane";
-        }
-        else if (windSpeed >= 96)
-        {
-            return "Category Two Hurricane";
-        }
-        else if (windSpeed >= 74)
-        {
-            return "Category One Hurricane";
-        }
-        else
-        {
-            return "Not a Hurricane";
-        }
+
+        // Check if sum of divisors equals the number
+        return sum == number;
     }
 }
