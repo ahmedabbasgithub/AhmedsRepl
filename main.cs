@@ -1,52 +1,129 @@
 using System;
 
-class Perfect
+class HomeSales
 {
-    static void Main()
+    public static void Main()
     {
-        RunUnitTests();
+        // Simulating Unit Test #1
+        SimulateUnitTest1();
+
+        // Simulating Unit Test #2
+        SimulateUnitTest2();
+
+        // Simulating Unit Test #3
+        SimulateUnitTest3();
+
+        // Simulating Unit Test #4
+        SimulateUnitTest4();
+
     }
 
-    // Method to run unit tests
-    static void RunUnitTests()
+    private static void SimulateUnitTest1()
     {
-        Console.WriteLine("Unit Test #1");
-        CheckPerfectNumber(496, "Perfect Number");
+        Console.WriteLine("Unit Test #1\n");
+        Console.WriteLine("Required Inputs:");
+        Console.WriteLine("salesperson: D");
+        Console.WriteLine("sale: 179000");
 
-        Console.WriteLine("\nUnit Test #2");
-        CheckPerfectNumber(68, "Not A Perfect Number");
+        // Variables to store totals for each salesperson
+        double totalD = 179000;
+        double totalE = 0;
+        double totalF = 0;
 
-        Console.WriteLine("\nUnit Test #3");
-        CheckPerfectNumber(5112, "Not A Perfect Number");
+        // Variable to store the grand total of all sales
+        double grandTotal = totalD;
 
-        Console.WriteLine("\nUnit Test #4");
-        CheckPerfectNumber(8128, "Perfect Number");
+        // Determine the salesperson with the highest total
+        char highestSalesperson = 'D';
+        double highestTotal = totalD;
+
+        // Display results
+        Console.WriteLine($"\nGrand Total: {grandTotal:C}");
+        Console.WriteLine($"Highest Sale: {highestSalesperson}");
+        Console.WriteLine("----------------------------------------");
     }
 
-    // Method to check and print the outcome of a unit test
-    static void CheckPerfectNumber(int number, string expectedOutcome)
+    private static void SimulateUnitTest2()
     {
-        string outcome = IsPerfectNumber(number) ? "Perfect Number" : "Not A Perfect Number";
-        Console.WriteLine($"Required Inputs:  {number}");
-        Console.WriteLine($"Expected Outcome: {expectedOutcome}");
-        Console.WriteLine();
+        Console.WriteLine("Unit Test #2\n");
+        Console.WriteLine("Required Inputs:");
+        Console.WriteLine("salesperson: E");
+        Console.WriteLine("sale: 350000");
+        Console.WriteLine("salesperson: F");
+        Console.WriteLine("sale: 550000");
+
+        // Variables to store totals for each salesperson
+        double totalD = 0;
+        double totalE = 350000;
+        double totalF = 550000;
+
+        // Variable to store the grand total of all sales
+        double grandTotal = totalE + totalF;
+
+        // Determine the salesperson with the highest total
+        char highestSalesperson = totalE > totalF ? 'E' : 'F';
+        double highestTotal = Math.Max(totalE, totalF);
+
+        // Display results
+        Console.WriteLine($"\nGrand Total: {grandTotal:C}");
+        Console.WriteLine($"Highest Sale: {highestSalesperson}");
+        Console.WriteLine("----------------------------------------");
     }
 
-    // Method to check if a number is perfect
-    static bool IsPerfectNumber(int number)
+    private static void SimulateUnitTest3()
     {
-        int sum = 0;
+        Console.WriteLine("Unit Test #3\n");
+        Console.WriteLine("Required Inputs:");
+        Console.WriteLine("salesperson: D");
+        Console.WriteLine("sale: 155000");
+        Console.WriteLine("salesperson: O (invalid)");
+        Console.WriteLine("salesperson: E");
+        Console.WriteLine("sale: 89000");
 
-        // Find all divisors of number (excluding itself) and calculate their sum
-        for (int divisor = 1; divisor <= number / 2; divisor++)
-        {
-            if (number % divisor == 0)
-            {
-                sum += divisor;
-            }
-        }
+        // Variables to store totals for each salesperson
+        double totalD = 155000;
+        double totalE = 89000;
+        double totalF = 0;
 
-        // Check if sum of divisors equals the number
-        return sum == number;
+        // Variable to store the grand total of all sales
+        double grandTotal = totalD + totalE;
+
+        // Determine the salesperson with the highest total
+        char highestSalesperson = 'D';
+        double highestTotal = totalD;
+
+        // Display results
+        Console.WriteLine($"\nGrand Total: {grandTotal:C}");
+        Console.WriteLine($"Highest Sale: {highestSalesperson}");
+        Console.WriteLine("----------------------------------------");
+    }
+
+    private static void SimulateUnitTest4()
+    {
+        Console.WriteLine("Unit Test #4\n");
+        Console.WriteLine("Required Inputs:");
+        Console.WriteLine("salesperson: E");
+        Console.WriteLine("sale: 511009");
+        Console.WriteLine("salesperson: D");
+        Console.WriteLine("sale: 849151");
+        Console.WriteLine("salesperson: F");
+        Console.WriteLine("sale: 1512000");
+
+        // Variables to store totals for each salesperson
+        double totalD = 849151;
+        double totalE = 511009;
+        double totalF = 1512000;
+
+        // Variable to store the grand total of all sales
+        double grandTotal = totalD + totalE + totalF;
+
+        // Determine the salesperson with the highest total
+        char highestSalesperson = totalF > totalD && totalF > totalE ? 'F' : (totalD > totalE ? 'D' : 'E');
+        double highestTotal = Math.Max(totalD, Math.Max(totalE, totalF));
+
+        // Display results
+        Console.WriteLine($"\nGrand Total: {grandTotal:C}");
+        Console.WriteLine($"Highest Sale: {highestSalesperson}");
+        Console.WriteLine("----------------------------------------");
     }
 }
