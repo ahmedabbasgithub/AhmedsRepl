@@ -1,80 +1,82 @@
 using System;
 
-class TemperaturesComparison
+class Program
 {
     static void Main()
     {
-        const int NUM_TEMPERATURES = 5;
-        int[] temperatures = new int[NUM_TEMPERATURES];
-        bool validInput = false;
+        Console.WriteLine("************************************");
+        Console.WriteLine("*  The stars shine in Greenville.  *");
+        Console.WriteLine("************************************");
 
-        Console.WriteLine("Enter five daily Fahrenheit temperatures (between -30 and 130):");
+        bool exitRequested = false;
 
-        // Input temperatures
-        for (int i = 0; i < NUM_TEMPERATURES; i++)
+        while (!exitRequested)
         {
-            while (!validInput)
+            DisplayMenu();
+
+            int choice = GetMenuChoice();
+
+            switch (choice)
             {
-                Console.Write($"Temperature {i + 1}: ");
-                if (int.TryParse(Console.ReadLine(), out int temp) && temp >= -30 && temp <= 130)
-                {
-                    temperatures[i] = temp;
-                    validInput = true;
-                }
-                else
-                {
-                    Console.WriteLine($"Error: Temperature {temp} is invalid. Please enter a valid temperature between -30 and 130.");
-                }
+                case 1:
+                    CalculateRevenue();
+                    break;
+                case 2:
+                    exitRequested = true;
+                    Console.WriteLine("Thank you for using the Greenville Revenue App, good-bye!");
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice. Please enter 1 or 2.");
+                    break;
             }
-            validInput = false;
-        }
 
-        // Determine temperature trend
-        bool isAscending = true;
-        bool isDescending = true;
-
-        for (int i = 1; i < NUM_TEMPERATURES; i++)
-        {
-            if (temperatures[i] > temperatures[i - 1])
-            {
-                isDescending = false;
-            }
-            else if (temperatures[i] < temperatures[i - 1])
-            {
-                isAscending = false;
-            }
+            Console.WriteLine();
         }
-
-        // Output based on temperature trend
-        if (isAscending)
-        {
-            Console.WriteLine("Getting warmer");
-        }
-        else if (isDescending)
-        {
-            Console.WriteLine("Getting cooler");
-        }
-        else
-        {
-            Console.WriteLine("It's a mixed bag");
-        }
-
-        // Display temperatures
-        Console.WriteLine($"5-day Temperature [{string.Join(", ", temperatures)}]");
-
-        // Calculate and display average temperature
-        double averageTemperature = CalculateAverage(temperatures);
-        Console.WriteLine($"Average Temperature is {averageTemperature} degrees");
     }
 
-    // Method to calculate average of temperatures
-    static double CalculateAverage(int[] temperatures)
+    static void DisplayMenu()
     {
-        double sum = 0;
-        foreach (int temp in temperatures)
+        Console.WriteLine("Please Enter the following number below from the following menu:");
+        Console.WriteLine("1. CALCULATE Greenville Revenue Year-Over-Year");
+        Console.WriteLine("2. Exit");
+    }
+
+    static int GetMenuChoice()
+    {
+        Console.Write("Enter your choice: ");
+        while (true)
         {
-            sum += temp;
+            if (int.TryParse(Console.ReadLine(), out int choice))
+            {
+                return choice;
+            }
+            else
+            {
+                Console.Write("Invalid input. Please enter a number: ");
+            }
         }
-        return sum / temperatures.Length;
+    }
+
+    static void CalculateRevenue()
+    {
+        Console.Write("Enter the number of contestants in the previous year: ");
+        int lastYearContestants = int.Parse(Console.ReadLine());
+
+        Console.Write("Enter the number of contestants in the current year: ");
+        int currentYearContestants = int.Parse(Console.ReadLine());
+
+        decimal expectedRevenue = CalculateExpectedRevenue(currentYearContestants);
+
+        Console.WriteLine($"Last year's competition had {lastYearContestants} contestants, and this year's has {currentYearContestants} contestants");
+        Console.WriteLine($"Revenue expected this year is ${expectedRevenue.ToString("0.##")}");
+
+        bool isBigger = currentYearContestants > lastYearContestants;
+        Console.WriteLine($"It is {(isBigger ? "true" : "false")} that this year's competition is bigger than last year's.");
+    }
+
+    static decimal CalculateExpectedRevenue(int contestants)
+    {
+        decimal revenuePerContestant = 25.0m; // Example revenue per contestant
+        return contestants * revenuePerContestant;
     }
 }
