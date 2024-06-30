@@ -19,7 +19,7 @@ class Program
             switch (choice)
             {
                 case 1:
-                    CalculateRevenue();
+                    CalculateRevenueAndCompare();
                     break;
                 case 2:
                     exitRequested = true;
@@ -57,7 +57,7 @@ class Program
         }
     }
 
-    static void CalculateRevenue()
+    static void CalculateRevenueAndCompare()
     {
         Console.Write("Enter the number of contestants in the previous year: ");
         int lastYearContestants = int.Parse(Console.ReadLine());
@@ -70,13 +70,30 @@ class Program
         Console.WriteLine($"Last year's competition had {lastYearContestants} contestants, and this year's has {currentYearContestants} contestants");
         Console.WriteLine($"Revenue expected this year is ${expectedRevenue.ToString("0.##")}");
 
-        bool isBigger = currentYearContestants > lastYearContestants;
-        Console.WriteLine($"It is {(isBigger ? "true" : "false")} that this year's competition is bigger than last year's.");
+        // Determine the comparison message based on contestant numbers
+        string comparisonMessage = GetComparisonMessage(lastYearContestants, currentYearContestants);
+        Console.WriteLine(comparisonMessage);
     }
 
     static decimal CalculateExpectedRevenue(int contestants)
     {
         decimal revenuePerContestant = 25.0m; // Example revenue per contestant
         return contestants * revenuePerContestant;
+    }
+
+    static string GetComparisonMessage(int lastYearContestants, int currentYearContestants)
+    {
+        if (currentYearContestants > 2 * lastYearContestants)
+        {
+            return "The competition is more than twice as big this year!";
+        }
+        else if (currentYearContestants > lastYearContestants)
+        {
+            return "The competition is bigger than ever!";
+        }
+        else
+        {
+            return "A tighter race this year! Come out and cast your vote!";
+        }
     }
 }
